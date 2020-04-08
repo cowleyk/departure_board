@@ -25,10 +25,10 @@ export default function ControlledExpansionPanels() {
   useEffect(() => {
     fetchData();
 
-    // set up polling of MTBA API every 30 seconds
+    // set up polling of MTBA API every 15 seconds (gives buffer room for 20 calls/minute)
     const interval = setInterval(() => {
       fetchData();
-    }, 5000);
+    }, 30000);
     return () => clearInterval(interval);
   }, []);
 
@@ -38,7 +38,7 @@ export default function ControlledExpansionPanels() {
 
     // it is possible to use the `include` parameter to get all of this data from one api call
     // however, the include limits to data filtering and is even messier than it already is to format
-    let new_predictions = axios.get(`https://api-v3.mbta.com/predictions/?filter[stop]=place-sstat&sort=arrival_time`);
+    let new_predictions = axios.get(`https://api-v3.mbta.com/predictions/?filter[stop]=place-sstat&sort=-arrival_time`);
     let new_routes = axios.get(`https://api-v3.mbta.com/routes/?filter[stop]=place-sstat`);
     let new_schedule = axios.get(`https://api-v3.mbta.com/schedules/?filter[stop]=place-sstat&filter[min_time]=${current_time}&sort=departure_time`);
     let tomorrow_schedule = axios.get(`https://api-v3.mbta.com/schedules/?filter[stop]=place-sstat&filter[date]=${tommorrow_date}&sort=departure_time`);
