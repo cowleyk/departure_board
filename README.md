@@ -32,7 +32,14 @@ I did not see a track # available in the API to match what is in the [example de
 This would be useful in storing routes, and allow for fewer/less frequent API calls.
 The routes and schedules could be stored, and updated periodically, and only the /predictions route would need to be polled (or ideally, updated with the streaming service)
 
-## Running Locally
+## Running UI-Only App Locally
 1) Clone this repository
-2) `npm install`
-3) `npm start`
+2) `git checkout ui-surge`
+3) `npm install`
+4) `npm start`
+5) open localhost:3000 in the browser
+
+## Running UI and Express server inside a single docker container
+1) `docker pull kcowley/departure_board_insurify`
+2) `docker run -p <preffered port to run on>:3001 kcowley/departure_board_insurify`
+3) open localhost:<port> in the browser

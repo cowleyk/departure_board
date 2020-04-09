@@ -23,6 +23,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join.apply(path, [_root].concat(['client', 'build']))));
+// for single-container docker build file structure use below path
+// app.use(express.static(path.join.apply(path, [__dirname].concat(['client', 'build']))));
 
 app.use('/data', fetchAllData);
 app.use('/routes', routes);
