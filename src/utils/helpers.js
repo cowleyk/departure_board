@@ -20,21 +20,23 @@ export default function formatPredictions(predictions, routes, schedules, tomorr
       schedule: false
     }
 
-    for(let i=predictions.length-1; i>=0; i--) {
+
+    for(let i=0; i<predictions.length; i++) {
+    // for(let i=predictions.length-1; i>=0; i--) {
       let pred_route_id = predictions[i].relationships.route.data.id;
 
       // api best practices suggest using the arrival_time for predictions
       let pred_arrive_time = predictions[i].attributes.arrival_time;
       let pred_direction_id = predictions[i].attributes.direction_id;
 
-
+      // predictions are in ascending order, want lowest (first) prediction for a route
       // if prediction matches the route and we haven't already got the most recent prediction
       if(pred_route_id === route.id && !route_prediction_tracker[pred_route_id] && pred_arrive_time) {
         route_prediction_tracker[pred_route_id] = pred_arrive_time;
         newRoute.arrival_time = pred_arrive_time;
-        // newRoute.vehicle = predictions[i].relationships.vehicle.data.id;
+
         if(route.attributes.direction_destinations[pred_direction_id] === 'South Station') {
-          // vehicle is outbound from south station
+          // vehicle is outbound from south station, set direction to outbound station
           newRoute.direction = route.attributes.direction_destinations[0]
         } else {
           newRoute.direction = route.attributes.direction_destinations[pred_direction_id]
