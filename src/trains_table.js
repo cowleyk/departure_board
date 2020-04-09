@@ -38,11 +38,13 @@ export default function ControlledExpansionPanels() {
 
     // it is possible to use the `include` parameter to get all of this data from one api call
     // however, the include limits to data filtering and is even messier than it already is to format
-    let new_predictions = axios.get(`https://api-v3.mbta.com/predictions/?filter[stop]=place-sstat&sort=arrival_time`);
-    let new_routes = axios.get(`https://api-v3.mbta.com/routes/?filter[stop]=place-sstat`);
-    let new_schedule = axios.get(`https://api-v3.mbta.com/schedules/?filter[stop]=place-sstat&filter[min_time]=${current_time}&sort=departure_time`);
-    let tomorrow_schedule = axios.get(`https://api-v3.mbta.com/schedules/?filter[stop]=place-sstat&filter[date]=${tommorrow_date}&sort=departure_time`);
-    Promise.all([new_predictions, new_routes, new_schedule, tomorrow_schedule])
+    let test = axios.get('/testAPI')
+    // let new_predictions = axios.get(`https://api-v3.mbta.com/predictions/?filter[stop]=place-sstat&sort=arrival_time`);
+    // let new_routes = axios.get(`https://api-v3.mbta.com/routes/?filter[stop]=place-sstat`);
+    // let new_schedule = axios.get(`https://api-v3.mbta.com/schedules/?filter[stop]=place-sstat&filter[min_time]=${current_time}&sort=departure_time`);
+    // let tomorrow_schedule = axios.get(`https://api-v3.mbta.com/schedules/?filter[stop]=place-sstat&filter[date]=${tommorrow_date}&sort=departure_time`);
+    // Promise.all([new_predictions, new_routes, new_schedule, tomorrow_schedule, test])
+    Promise.all([test])
       .then((resp) => {
         console.log('resp', resp);
         let formattedRoutes = formatPredictions(resp[0].data.data, resp[1].data.data, resp[2].data.data, resp[3].data.data);
