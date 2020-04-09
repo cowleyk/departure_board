@@ -1,4 +1,4 @@
-export default function formatPredictions(predictions, routes, schedules, tomorrow_schedule) {
+module.exports = (predictions, routes, schedules, tomorrow_schedule) => {
   // pull in schedule when prediction not available
   // need to calc. time until arrival (moment? use seconds since epoch)
 

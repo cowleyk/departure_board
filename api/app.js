@@ -6,7 +6,7 @@ var cors = require('cors');
 var path = require('path');
 var _root = path.resolve(__dirname, '..')
 
-var allData = require('./routes/fetchAllData');
+var fetchAllData = require('./routes/fetchAllData');
 var routes = require('./routes/routes');
 var predictions = require('./routes/predictions');
 var schedules = require("./routes/schedules");

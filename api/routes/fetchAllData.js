@@ -14,12 +14,12 @@ router.get('/', function(req, res, next) {
   let tomorrow_schedule = axios.get(`https://api-v3.mbta.com/schedules/?filter[stop]=place-sstat&filter[date]=${tommorrow_date}&sort=departure_time`);
   Promise.all([new_predictions, new_routes, new_schedule, tomorrow_schedule])
     .then((resp) => {
-      console.log('resp', resp);
       let formattedData = formatData(resp[0].data.data, resp[1].data.data, resp[2].data.data, resp[3].data.data);
-      res.send(formattedData);
+      res.status(200).json(formattedData);
     })
     .catch((err) => {
-      console.log('ERROR', err)
+      console.log('ERROR', err);
+      res.status(404).send(err);
     })
 
 });
