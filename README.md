@@ -19,6 +19,9 @@ The MTBA API V3 has a [streaming service](https://www.mbta.com/developers/v3-api
 Due to CORS issues, this is difficult to implement in a browser-only application.
 Adding middleware to get around this issue would be a great next step.
 
+### Split routes to separate inbound/outboud row in table
+Red Line is the only route that treats the South Station as a middle stop.  All other routes are only outbound from the South Station.  It would be good to have an Ashmont/Braintree row and an Alewife row to show predictions.
+
 ### Add vehicle numbers to board
 This is available with the vehicle ID that is passed as a relationship to the prediction resource.
 I did not see a track # available in the API to match what is in the [example departure board](https://commons.wikimedia.org/wiki/File:North_Station_departure_board.JPG).
